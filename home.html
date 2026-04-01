@@ -283,14 +283,9 @@
       </div>
       </div>
 
-    
-      
-      
 
       <!-- Other pages placeholders -->
       <div id="reservations" class="page"><h2 class="text-xl font-bold">Reservations</h2>
-
-
 
   <!-- Container 2: Search & Filter -->
    <div class="relative transform translate-x-97 -translate-y-35  ">
@@ -484,12 +479,31 @@
     <!-- Create Room Form -->
     <h2 class="text-2xl font-bold text-gray-800 mb-6 ">Create Room</h2>
     <form id="create-room-form" class="flex flex-col gap-4">
+
       <!-- Room Type -->
-      <div>
-        <label class="block text-gray-700 font-medium mb-2"><ion-icon name="diamond"></ion-icon> Room Type</label>
+    <div>
+      <label class="block text-gray-700 font-medium mb-2 flex items-center gap-2">
+        <ion-icon name="diamond"></ion-icon> Room Type
+      </label>
+
+      <div class="flex items-center gap-3">
+        <!-- Narrow input -->
         <input id="room-type" type="text" placeholder="Enter room type"
-               class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+              class="w-[600px] border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+
+        <!-- Occupancy buttons -->
+        <div class="flex gap-2">
+          <button type="button" class="occupancy-btn bg-gray-200 text-gray-800 px-3 py-2 rounded-3xl border-1 hover:bg-gray-300 transition"
+                  data-occupancy="single">Single</button>
+          <button type="button" class="occupancy-btn bg-gray-200 text-gray-800 px-3 py-2 rounded-3xl border-1 hover:bg-gray-300 transition"
+                  data-occupancy="double">Double</button>
+        </div>
       </div>
+
+      <!-- Hidden field to store occupancy -->
+      <input type="hidden" id="room-occupancy" name="room_occupancy" value="single">
+    </div>
+
       <!-- Room Price -->
       <div>
       <label class="block text-gray-700 font-medium mb-2">
@@ -526,14 +540,14 @@
   </div>
 
   <!-- Existing Rooms -->
-<div id="room-container" class="flex flex-wrap justify-center gap-x-6 gap-y-6 mt-10 px-6">
+<div id="room-container" class="grid grid-cols-3 justify-items-center gap-x-4 gap-y-6 mt-10 px-6 mx-auto max-w-[1100px]">
   <!-- Standard Room -->
   <div class="bg-white border-1 rounded-3xl shadow-lg p-6 w-full max-w-[350px] h-[400px] flex flex-col items-center">
     <div class="w-full h-[150px] bg-gray-200 rounded-lg mb-4 flex items-center justify-center text-gray-500">
       <img src="standard.jpg" alt="Standard Room" class="w-full h-full object-cover rounded-lg" />
     </div>
     <div class="text-center">
-      <h3 class="text-lg font-bold text-gray-800 mb-2">Standard Room</h3>
+      <h3 class="text-lg font-bold text-gray-800 mb-2">Standard Room (Single)</h3>
       <h2 class="text-lg font-bold text-green-600 mb-2">₱ 1,800</h2>
       <p class="text-gray-600 mb-4">Affordable comfort with essential amenities.</p>
     </div>
@@ -543,13 +557,14 @@
     </div>
   </div>
 
+
   <!-- Deluxe Room -->
   <div class="bg-white border-1 rounded-3xl  shadow-lg p-6 w-full max-w-[350px] h-[400px] flex flex-col items-center">
     <div class="w-full h-[150px] bg-gray-200 rounded-lg mb-4 flex items-center justify-center text-gray-500">
       <img src="deluxe.jpg" alt="Deluxe Room" class="w-full h-full object-cover rounded-lg" />
     </div>
     <div class="text-center">
-      <h3 class="text-lg font-bold text-gray-800 mb-2">Deluxe Room</h3>
+      <h3 class="text-lg font-bold text-gray-800 mb-2">Deluxe Room (Single)</h3>
       <h2 class="text-lg font-bold text-green-600  mb-2">₱ 2,300</h2>
       <p class="text-gray-600 mb-4">Spacious room that has all the premium features.</p>
     </div>
@@ -565,7 +580,7 @@
       <img src="suite.jpg" alt="Suite Room" class="w-full h-full object-cover rounded-lg" />
     </div>
     <div class="text-center">
-      <h3 class="text-lg font-bold text-gray-800 mb-2">Suite Room</h3>
+      <h3 class="text-lg font-bold text-gray-800 mb-2">Suite Room (Single)</h3>
       <h2 class="text-lg font-bold text-green-600  mb-2">₱ 3,000</h2>
       <p class="text-gray-600 mb-4">Luxury suite with the ultimate top-class amenities.</p>
     </div>
@@ -574,6 +589,53 @@
       <button class="delete-btn bg-red-500 text-white px-4 py-2 border-1 rounded-3xl hover:bg-red-600 transition">Delete</button>
     </div>
   </div>
+  
+   <!-- Standard Room -->
+  <div class="bg-white border-1 rounded-3xl shadow-lg p-6 w-full max-w-[350px] h-[400px] flex flex-col items-center">
+    <div class="w-full h-[150px] bg-gray-200 rounded-lg mb-4 flex items-center justify-center text-gray-500">
+      <img src="standard.jpg" alt="Standard Room" class="w-full h-full object-cover rounded-lg" />
+    </div>
+    <div class="text-center">
+      <h3 class="text-lg font-bold text-gray-800 mb-2">Standard Room (Double)</h3>
+      <h2 class="text-lg font-bold text-green-600 mb-2">₱ 2,700</h2>
+      <p class="text-gray-600 mb-4">Affordable comfort with essential amenities.</p>
+    </div>
+    <div class="flex gap-3">
+      <button class="edit-btn bg-blue-500 text-white px-4 py-2 border-1 rounded-3xl hover:bg-blue-600 transition">Edit</button>
+      <button class="delete-btn bg-red-500 text-white px-4 py-2 border-1 rounded-3xl hover:bg-red-600 transition">Delete</button>
+    </div>
+  </div>
+     <!-- Deluxe Room -->
+  <div class="bg-white border-1 rounded-3xl  shadow-lg p-6 w-full max-w-[350px] h-[400px] flex flex-col items-center">
+    <div class="w-full h-[150px] bg-gray-200 rounded-lg mb-4 flex items-center justify-center text-gray-500">
+      <img src="deluxe.jpg" alt="Deluxe Room" class="w-full h-full object-cover rounded-lg" />
+    </div>
+    <div class="text-center">
+      <h3 class="text-lg font-bold text-gray-800 mb-2">Deluxe Room (Double)</h3>
+      <h2 class="text-lg font-bold text-green-600  mb-2">₱ 3,200</h2>
+      <p class="text-gray-600 mb-4">Spacious room that has all the premium features.</p>
+    </div>
+    <div class="flex gap-3">
+      <button class="edit-btn bg-blue-500 text-white px-4 py-2 border-1 rounded-3xl hover:bg-blue-600 transition">Edit</button>
+      <button class="delete-btn bg-red-500 text-white px-4 py-2 border-1 rounded-3xl hover:bg-red-600 transition">Delete</button>
+    </div>
+  </div>
+     <!-- Suite Room -->
+  <div class="bg-white border-1 rounded-3xl  shadow-lg p-6 w-full max-w-[350px] h-[400px] flex flex-col items-center">
+    <div class="w-full h-[150px] bg-gray-200 rounded-lg mb-4 flex items-center justify-center text-gray-500">
+      <img src="suite.jpg" alt="Deluxe Room" class="w-full h-full object-cover rounded-lg" />
+    </div>
+    <div class="text-center">
+      <h3 class="text-lg font-bold text-gray-800 mb-2">Suite Room (Double)</h3>
+      <h2 class="text-lg font-bold text-green-600  mb-2">₱ 4,000</h2>
+      <p class="text-gray-600 mb-4">Luxury suite with the ultimate top-class amenities.</p>
+    </div>
+    <div class="flex gap-3">
+      <button class="edit-btn bg-blue-500 text-white px-4 py-2 border-1 rounded-3xl hover:bg-blue-600 transition">Edit</button>
+      <button class="delete-btn bg-red-500 text-white px-4 py-2 border-1 rounded-3xl hover:bg-red-600 transition">Delete</button>
+    </div>
+  </div>
+  
 </div>
 
 
@@ -597,36 +659,55 @@
 </div>
 
   <script>
-  let editingRoom = null;   // Track which room is being edited
+let editingRoom = null;   // Track which room is being edited
 let deletingRoom = null;  // Track which room is being deleted
 
-  const priceInput = document.getElementById("room-price");
-  priceInput.addEventListener("input", function() {
-    this.value = this.value.replace(/[^0-9.]/g, ""); // allow only digits + decimal
-  });
-
-  priceInput.addEventListener("input", function(e) {
-    // Remove non-digits except decimal
-    let value = this.value.replace(/[^0-9.]/g, "");
-
-    if (value) {
-      // Format with commas and fixed decimals
-      let parts = value.split(".");
-      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ","); // add commas
-      if (parts[1]) {
-        // limit to 2 decimal places
-        parts[1] = parts[1].substring(0, 2);
-      }
-      this.value = parts.join(".");
+// Price input formatting
+const priceInput = document.getElementById("room-price");
+priceInput.addEventListener("input", function() {
+  this.value = this.value.replace(/[^0-9.]/g, ""); // allow only digits + decimal
+});
+priceInput.addEventListener("input", function(e) {
+  let value = this.value.replace(/[^0-9.]/g, "");
+  if (value) {
+    let parts = value.split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    if (parts[1]) {
+      parts[1] = parts[1].substring(0, 2);
     }
+    this.value = parts.join(".");
+  }
+});
+
+// Occupancy button logic
+function setupOccupancyButtons() {
+  const occupancyField = document.getElementById("room-occupancy");
+  document.querySelectorAll(".occupancy-btn").forEach(btn => {
+    btn.addEventListener("click", function() {
+      const occupancy = this.getAttribute("data-occupancy");
+      occupancyField.value = occupancy;
+
+      // Reset buttons in same group
+      const container = this.closest(".flex");
+      container.querySelectorAll(".occupancy-btn").forEach(b => {
+        b.classList.remove("bg-green-500","text-white");
+        b.classList.add("bg-gray-200","text-gray-800");
+      });
+
+      // Highlight clicked
+      this.classList.remove("bg-gray-200","text-gray-800");
+      this.classList.add("bg-green-500","text-white");
+    });
   });
+}
+setupOccupancyButtons();
 
 // Open popup for Add Room
 document.getElementById("add-room-btn").addEventListener("click", () => {
   document.getElementById("room-overlay").classList.remove("hidden");
   document.getElementById("add-room-popup").classList.remove("hidden");
   document.getElementById("add-room-popup").classList.remove("scale-0");
-  editingRoom = null; // reset editing state
+  editingRoom = null;
   document.querySelector("#create-room-form h2").textContent = "Create Room";
 });
 
@@ -653,6 +734,7 @@ document.getElementById("create-room-form").addEventListener("submit", function(
   const type = document.getElementById("room-type").value;
   const price = document.getElementById("room-price").value;
   const desc = document.getElementById("room-desc").value;
+  const occupancy = document.getElementById("room-occupancy").value; // single or double
   const picInput = document.getElementById("room-pic");
   let picURL = "placeholder.jpg";
 
@@ -662,7 +744,7 @@ document.getElementById("create-room-form").addEventListener("submit", function(
 
   if (editingRoom) {
     // Update existing room
-    editingRoom.querySelector("h3").textContent = type;
+    editingRoom.querySelector("h3").textContent = `${type} (${occupancy.charAt(0).toUpperCase() + occupancy.slice(1)})`;
     editingRoom.querySelector("h2").textContent = `₱ ${price}`;
     editingRoom.querySelector("p").textContent = desc;
     editingRoom.querySelector("img").src = picURL;
@@ -676,8 +758,8 @@ document.getElementById("create-room-form").addEventListener("submit", function(
         <img src="${picURL}" alt="${type}" class="w-full h-full object-cover rounded-lg" />
       </div>
       <div class="text-center">
-        <h3 class="text-lg font-bold text-gray-800 mb-2">${type}</h3>
-        <h2 class="text-lg font-bold text-green-600  mb-2">₱ ${price}</h2>
+        <h3 class="text-lg font-bold text-gray-800 mb-2">${type} (${occupancy.charAt(0).toUpperCase() + occupancy.slice(1)})</h3>
+        <h2 class="text-lg font-bold text-green-600 mb-2">₱ ${price}</h2>
         <p class="text-gray-600 mb-4">${desc}</p>
       </div>
       <div class="flex gap-3">
@@ -695,14 +777,31 @@ document.getElementById("create-room-form").addEventListener("submit", function(
 
   // Reset form
   this.reset();
+  document.getElementById("room-occupancy").value = "single"; // reset to default
 });
 
-// Delegate Edit/Delete button clicks (works for existing + new rooms)
+// Delegate Edit/Delete button clicks
 document.getElementById("room-container").addEventListener("click", function(e) {
   if (e.target.classList.contains("edit-btn")) {
-    // Open popup with existing data
     editingRoom = e.target.closest("div.bg-white");
-    document.getElementById("room-type").value = editingRoom.querySelector("h3").textContent;
+    const titleText = editingRoom.querySelector("h3").textContent;
+    // Split out occupancy if present
+    const [roomType, occLabel] = titleText.split(" (");
+    document.getElementById("room-type").value = roomType.trim();
+    if (occLabel) {
+      const occ = occLabel.replace(")", "").toLowerCase();
+      document.getElementById("room-occupancy").value = occ;
+      // highlight correct button
+      document.querySelectorAll(".occupancy-btn").forEach(b => {
+        b.classList.remove("bg-green-500","text-white");
+        b.classList.add("bg-gray-200","text-gray-800");
+        if (b.getAttribute("data-occupancy") === occ) {
+          b.classList.remove("bg-gray-200","text-gray-800");
+          b.classList.add("bg-green-500","text-white");
+        }
+      });
+    }
+
     document.getElementById("room-price").value = editingRoom.querySelector("h2").textContent.replace("₱ ", "");
     document.getElementById("room-desc").value = editingRoom.querySelector("p").textContent;
 
@@ -710,24 +809,21 @@ document.getElementById("room-container").addEventListener("click", function(e) 
     document.getElementById("add-room-popup").classList.remove("hidden");
     document.getElementById("add-room-popup").classList.remove("scale-0");
 
-    // Change popup title and button text
     document.querySelector("#create-room-form h2").textContent = "Edit Room";
     document.querySelector("#create-room-form button[type='submit']").textContent = "Update Room";
   }
 
   if (e.target.classList.contains("delete-btn")) {
-    // Open delete confirmation popup
     deletingRoom = e.target.closest("div.bg-white");
     document.getElementById("delete-popup").classList.remove("hidden");
   }
 });
 
-// Delete confirmation logic
+// Delete confirmation
 document.getElementById("cancel-delete").addEventListener("click", () => {
   deletingRoom = null;
   document.getElementById("delete-popup").classList.add("hidden");
 });
-
 document.getElementById("confirm-delete").addEventListener("click", () => {
   if (deletingRoom) {
     deletingRoom.remove();
@@ -735,8 +831,8 @@ document.getElementById("confirm-delete").addEventListener("click", () => {
   }
   document.getElementById("delete-popup").classList.add("hidden");
 });
+</script>
 
-  </script>
       </div>
       
 
