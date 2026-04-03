@@ -73,6 +73,12 @@
     --default-mono-font-family: var(--font-mono);
   }
 }
+
+/* Global button cursor style */
+button {
+  cursor: pointer;
+}
+
 @layer base {
   *, ::after, ::before, ::backdrop, ::file-selector-button {
     box-sizing: border-box;
