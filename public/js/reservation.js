@@ -174,7 +174,7 @@ function addLiveReservation() {
     status: statuses[Math.floor(Math.random()*statuses.length)]
   };
   liveFeed.unshift(newRes);
-  if(liveFeed.length>5) liveFeed.pop();
+  if(liveFeed.length>20) liveFeed.pop();
   renderLiveFeed();
 }
 
